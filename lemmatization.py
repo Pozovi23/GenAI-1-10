@@ -60,28 +60,28 @@ def test():
     ]
 
     print("\nEnglish words:")
-    print("-" * 80)
-    print(f"{'word':<22} {'spacy':<22} {'PorterStemmer':<22} {'equality':<22}")
-    print("-" * 80)
+    print("-" * 70)
+    print(f"{'word':<22} {'spacy':<22} {'PorterStemmer':<22}")
+    print("-" * 70)
 
     en_lemmas = lemmatization_en(english_words)
     en_stems = lemmatization_porter_stemmer(english_words, "en")
 
     for i, word in enumerate(english_words):
         match = "✓" if en_lemmas[i] == en_stems[i] else "✗"
-        print(f"{word:<22} {en_lemmas[i]:<22} {en_stems[i]:<22} {match:<22}")
+        print(f"{word:<22} {en_lemmas[i]:<22} {en_stems[i]:<22}")
 
     print("\nRussian words:")
-    print("-" * 80)
-    print(f"{'word':<22} {'pymorphy3':<22} {'SnowballStemmer':<22} {'equality':<22}")
-    print("-" * 80)
+    print("-" * 70)
+    print(f"{'word':<22} {'pymorphy3':<22} {'SnowballStemmer':<22}")
+    print("-" * 70)
 
     ru_lemmas = lemmatization_ru(russian_words)
     ru_stems = lemmatization_porter_stemmer(russian_words, "ru")
 
     for i, word in enumerate(russian_words):
         match = "✓" if ru_lemmas[i] == ru_stems[i] else "✗"
-        print(f"{word:<22} {ru_lemmas[i]:<22} {ru_stems[i]:<22} {match:<22}")
+        print(f"{word:<22} {ru_lemmas[i]:<22} {ru_stems[i]:<22}")
 
 
 if __name__ == "__main__":
