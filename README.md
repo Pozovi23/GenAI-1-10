@@ -10,8 +10,7 @@ python -m spacy download en_core_web_sm
 
 -------------------------
 A small note. pymorphy2 does not support python 3.12, so pymorphy3 is used. 
-PorterStemmer is not suitable for checking the Russian language, so SnowballStemmer is used for Russian.
-
+PorterStemmer is not suitable for checking the Russian language, so SnowballStemmer is used for Russian.  
 And, in general, we can not check pymorphy3 and spacy with PorterStemmer.
 PorterStemmer is used for stemming, but according to instructions we use pymorphy3 and spacy for lemmatization, it is quite different things.
 ------------------------
