@@ -4,6 +4,20 @@ from nltk.stem import PorterStemmer, SnowballStemmer
 
 
 def lemmatization_ru(words: list[str]) -> list[str]:
+    """
+    Lemmatize Russian words using pymorphy3.
+
+    Parameters
+    ----------
+    words : list[str]
+        List of Russian words to lemmatize.
+
+    Returns
+    -------
+    list[str]
+        List of base forms (lemmas) for the input words.
+
+    """
     base_forms = []
     morph = pymorphy3.MorphAnalyzer()
     for word in words:
@@ -13,6 +27,20 @@ def lemmatization_ru(words: list[str]) -> list[str]:
 
 
 def lemmatization_en(words: list[str]) -> list[str]:
+    """
+    Lemmatize English words using spaCy.
+
+    Parameters
+    ----------
+    words : list[str]
+        List of English words to lemmatize.
+
+    Returns
+    -------
+    list[str]
+        List of base forms (lemmas) for the input words.
+
+    """
     nlp = spacy.load("en_core_web_sm")
     doc = nlp(" ".join(words))
     base_forms = [token.lemma_ for token in doc]
@@ -21,6 +49,22 @@ def lemmatization_en(words: list[str]) -> list[str]:
 
 
 def lemmatization_porter_stemmer(words: list[str], lang: str) -> list[str]:
+    """
+    Stem words using Porter/Snowball stemmer algorithms.
+
+    Parameters
+    ----------
+    words : list[str]
+        List of words to stem.
+    lang : str
+        Language of the words ('en' for English, 'ru' for Russian).
+
+    Returns
+    -------
+    list[str]
+        List of stemmed forms of the input words.
+
+    """
     if lang == "en":
         porter = PorterStemmer()
     elif lang == "ru":
@@ -38,6 +82,11 @@ def lemmatization_porter_stemmer(words: list[str], lang: str) -> list[str]:
 
 
 def test():
+    """
+    Test function to compare lemmatization and stemming results.
+    Creates sample word lists in English and Russian, processes them
+    using different methods, and displays the results in a formatted table.
+    """
     english_words = [
         "running",
         "jumped",
@@ -68,7 +117,6 @@ def test():
     en_stems = lemmatization_porter_stemmer(english_words, "en")
 
     for i, word in enumerate(english_words):
-        match = "✓" if en_lemmas[i] == en_stems[i] else "✗"
         print(f"{word:<22} {en_lemmas[i]:<22} {en_stems[i]:<22}")
 
     print("\nRussian words:")
@@ -80,7 +128,6 @@ def test():
     ru_stems = lemmatization_porter_stemmer(russian_words, "ru")
 
     for i, word in enumerate(russian_words):
-        match = "✓" if ru_lemmas[i] == ru_stems[i] else "✗"
         print(f"{word:<22} {ru_lemmas[i]:<22} {ru_stems[i]:<22}")
 
 
